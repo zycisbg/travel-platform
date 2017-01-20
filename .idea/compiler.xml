@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="travel-api" />
+        <module name="travel-bpo" />
+        <module name="travel-common" />
+        <module name="travel-db" />
+        <module name="travel-service" />
+        <module name="travel-webapp" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.7">
+      <module name="travel-api" target="1.7" />
+      <module name="travel-bpo" target="1.7" />
+      <module name="travel-common" target="1.7" />
+      <module name="travel-db" target="1.7" />
+      <module name="travel-platform" target="1.7" />
+      <module name="travel-service" target="1.7" />
+      <module name="travel-webapp" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

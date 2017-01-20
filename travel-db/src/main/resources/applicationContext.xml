@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath*:/*.properties"/>
+    <!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">-->
+    <!--<property name="jndiName" value="java:comp/env/settJndi"/>-->
+    <!--</bean>-->
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close" lazy-init="false">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="${mvn.jdbc.url}"/>
+        <property name="user" value="${mvn.jdbc.name}"/>
+        <property name="password" value="${mvn.jdbc.pass}"/>
+        <property name="initialPoolSize" value="2"/>
+        <property name="minPoolSize" value="1"/>
+        <property name="maxPoolSize" value="3"/>
+        <property name="maxIdleTime" value="1800"/>
+        <property name="testConnectionOnCheckout" value="true"/>
+        <property name="idleConnectionTestPeriod" value="60"/>
+    </bean>
+    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <tx:advice id="userTxAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"
+                       rollback-for="Exception,SmoException,BmoException,DaoException"/>
+            <tx:method name="update*" propagation="REQUIRED"
+                       rollback-for="Exception,SmoException,BmoException,DaoException"/>
+            <tx:method name="add*" propagation="REQUIRED"
+                       rollback-for="Exception,SmoException,BmoException,DaoException"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="pc"
+        expression="execution(public * com.zyc.travel.bpo.write.*.*(..))"/>
+
+        <aop:advisor pointcut-ref="pc" advice-ref="userTxAdvice"/>
+    </aop:config>
+
+
+    <bean id="sqlSessionFactory" class="com.zyc.travel.common.db.shard.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:sqlmap/*.xml"/>
+    </bean>
+</beans>

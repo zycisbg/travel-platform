@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry
+            location="/Users/zyc/.m2/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar"/>
+
+    <context id="context1">
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <!-- Pagination -->
+        <plugin type="com.zyc.travel.generate.MySQLPaginationPlugin"></plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/travel_db?useUnicode=true"
+                        userId="root" password="123456"/>
+
+        <javaModelGenerator targetPackage="com.zyc.travel.model.dto"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="sqlmap"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.zyc.travel.model.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="j_travel_agency" domainObjectName="JTravelAgency"
+               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
+
+        <table tableName="j_travel_agency_address" domainObjectName="JTravelAgencyAddress"
+               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
+
+        <table tableName="j_travel_agency_contacts" domainObjectName="JTravelAgencyContacts"
+               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
+
+
+
+    </context>
+</generatorConfiguration>
