@@ -8,5 +8,10 @@ import com.zyc.travel.client.vo.TravelAgencyVO;
  */
 public interface TravelAgencyWriteService {
 
+    /**
+     * 添加旅行社
+     * @param travelAgencyVO
+     * @return
+     */
     ResultVO saveTravelAgency(TravelAgencyVO travelAgencyVO);
 }
