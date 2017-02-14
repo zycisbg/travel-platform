@@ -28,7 +28,7 @@ public class RedisUtil {
 
     public int timeout;
 
-    //在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；
+    //在travel一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的；
     public boolean TEST_ON_BORROW = true;
 
     public JedisPool jedisPool = null;

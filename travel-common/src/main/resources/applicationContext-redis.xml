@@ -4,10 +4,14 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!-- 旅行社写操作 -->
-    <bean id="myTravelAgencyWriteService" class="com.zyc.travel.service.write.impl.TravelAgencyWriteServiceImpl">
-        <property name="myTravelAgencyWriteBPO" ref="myTravelAgencyWriteBPO"/>
-        <property name="myRedisUtil" ref="myRedisUtil" />
-    </bean>
 
+    <bean id="myRedisUtil" class="com.zyc.travel.common.util.RedisUtil" init-method="init">
+        <property name="address" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="auth" value="${redis.pass}"/>
+        <property name="maxIdle" value="${redis.maxIdle}"/>
+        <property name="maxActive" value="${redis.maxActive}"/>
+        <property name="maxWait" value="${redis.maxWait}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+    </bean>
 </beans>

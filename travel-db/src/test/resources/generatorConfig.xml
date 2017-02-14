@@ -35,8 +35,8 @@
         <table tableName="j_travel_agency" domainObjectName="JTravelAgency"
                selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
 
-        <table tableName="j_travel_agency_address" domainObjectName="JTravelAgencyAddress"
-               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
+        <!--<table tableName="j_travel_agency_address" domainObjectName="JTravelAgencyAddress"-->
+               <!--selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>-->
 
         <table tableName="j_travel_agency_contacts" domainObjectName="JTravelAgencyContacts"
                selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>

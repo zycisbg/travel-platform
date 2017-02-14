@@ -32,8 +32,21 @@ public class TravelAgencyVO implements Serializable {
 
     private BigDecimal travelBalance;
 
+    private String travelArea;
+
+    private String travelAddressDetail;
+
+    private String businessLicenseUrl;
+
+    private String procedureProveUrl;
+
+    private String username;
+
+    private String password;
 
     private Date createDate;
+
+    private Date updateDate;
 
 
     private static final long serialVersionUID = 1L;
@@ -108,5 +121,66 @@ public class TravelAgencyVO implements Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getTravelArea() {
+        return travelArea;
+    }
+
+    public void setTravelArea(String travelArea) {
+        this.travelArea = travelArea;
+    }
+
+    public String getTravelAddressDetail() {
+        return travelAddressDetail;
+    }
+
+    public void setTravelAddressDetail(String travelAddressDetail) {
+        this.travelAddressDetail = travelAddressDetail;
+    }
+
+    public String getBusinessLicenseUrl() {
+        return businessLicenseUrl;
+    }
+
+    public void setBusinessLicenseUrl(String businessLicenseUrl) {
+        this.businessLicenseUrl = businessLicenseUrl;
+    }
+
+    public String getProcedureProveUrl() {
+        return procedureProveUrl;
+    }
+
+    public void setProcedureProveUrl(String procedureProveUrl) {
+        this.procedureProveUrl = procedureProveUrl;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

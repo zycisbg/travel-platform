@@ -4,7 +4,7 @@ package com.zyc.travel.client.util;
  * Created by zyc on 17/1/19.
  */
 public enum TravelTypeEnum {
-    SEND_TEAM_AGENCY(0,"发团社"),ORGANIZED_TEAM_AGENCY(1,"组团社");
+    NOT_APPLY(0,"未申请"),SEND_TEAM_AGENCY(1,"发团社"),ORGANIZED_TEAM_AGENCY(2,"组团社");
 
     private int code;
 

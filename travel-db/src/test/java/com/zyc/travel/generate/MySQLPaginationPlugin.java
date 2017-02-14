@@ -10,8 +10,6 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 
 import java.util.List;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Attribute;
-
 /**
  * Created by songxinlei on 2016/8/23.
  */
@@ -40,11 +38,11 @@ public class MySQLPaginationPlugin extends PluginAdapter {
      */
     private void addPage(TopLevelClass topLevelClass, IntrospectedTable introspectedTable,
                          String name) {
-        topLevelClass.addImportedType(new FullyQualifiedJavaType("com.jinlianchu.borrower.Page"));
+        topLevelClass.addImportedType(new FullyQualifiedJavaType("com.zyc.travel.common.page.Page"));
         CommentGenerator commentGenerator = context.getCommentGenerator();
         Field field = new Field();
         field.setVisibility(JavaVisibility.PROTECTED);
-        field.setType(new FullyQualifiedJavaType("com.jinlianchu.borrower.Page"));
+        field.setType(new FullyQualifiedJavaType("com.zyc.travel.common.page.Page"));
         field.setName(name);
         commentGenerator.addFieldComment(field, introspectedTable);
         topLevelClass.addField(field);
@@ -53,13 +51,13 @@ public class MySQLPaginationPlugin extends PluginAdapter {
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("set" + camel);
-        method.addParameter(new Parameter(new FullyQualifiedJavaType("com.jinlianchu.borrower.Page"), name));
+        method.addParameter(new Parameter(new FullyQualifiedJavaType("com.zyc.travel.common.page.Page"), name));
         method.addBodyLine("this." + name + "=" + name + ";");
         commentGenerator.addGeneralMethodComment(method, introspectedTable);
         topLevelClass.addMethod(method);
         method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.setReturnType(new FullyQualifiedJavaType("com.jinlianchu.borrower.Page"));
+        method.setReturnType(new FullyQualifiedJavaType("com.zyc.travel.common.page.Page"));
         method.setName("get" + camel);
         method.addBodyLine("return " + name + ";");
         commentGenerator.addGeneralMethodComment(method, introspectedTable);

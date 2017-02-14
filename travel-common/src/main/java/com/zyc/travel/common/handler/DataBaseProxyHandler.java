@@ -13,10 +13,10 @@ public class DataBaseProxyHandler<T> implements InvocationHandler {
 
     private ProxyInterface myProxyInterface;
 
-    private Object parm;
+    private Object param;
 
     public DataBaseProxyHandler(Object v) {
-        this.parm = v;
+        this.param = v;
     }
 
     public <T> T proxy(T delegate, ProxyInterface myProxyInterface) {
@@ -32,14 +32,18 @@ public class DataBaseProxyHandler<T> implements InvocationHandler {
             throws Throwable {
         Object obj = null;
         if (args != null && args.length > 0){
-            obj = myProxyInterface.doBegin(parm,args);
+            obj = myProxyInterface.doBegin(param,args);
         }else{
-            obj = myProxyInterface.doBegin(parm,null);
+            obj = myProxyInterface.doBegin(param,null);
         }
         if (obj != null)
             return obj;
         obj = method.invoke(this.delegate, args);
-        myProxyInterface.doEnd(obj, parm);
+        if (args != null && args.length > 0){
+            myProxyInterface.doEnd(obj, param,args);
+        }else{
+            myProxyInterface.doEnd(obj, param,null);
+        }
 
         return obj;
     }

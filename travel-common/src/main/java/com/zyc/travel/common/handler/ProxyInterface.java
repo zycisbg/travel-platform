@@ -11,7 +11,7 @@ public interface ProxyInterface<T,V> {
      * @param
      * @return
      */
-    public abstract Object doBegin(T t, Object[] parm);
+    public abstract Object doBegin(T t, Object[] param);
 
     /**
      * T 参数代表需要操作对象的工具类
@@ -21,5 +21,5 @@ public interface ProxyInterface<T,V> {
      * @param t
      * @return
      */
-    public abstract Object doEnd(V returnObj, T t);
+    public abstract Object doEnd(V returnObj, T t,Object[] param);
 }

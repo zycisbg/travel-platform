@@ -7,5 +7,5 @@ import com.zyc.travel.model.dto.JTravelAgency;
  */
 public interface TravelAgencyWriteBPO {
 
-    boolean addTravelAgency(JTravelAgency jTravelAgency);
+    Integer addTravelAgency(JTravelAgency jTravelAgency);
 }
