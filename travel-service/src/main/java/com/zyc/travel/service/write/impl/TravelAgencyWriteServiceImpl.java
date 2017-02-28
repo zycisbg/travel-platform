@@ -31,8 +31,9 @@ public class TravelAgencyWriteServiceImpl implements TravelAgencyWriteService{
 
     private TravelAgencyConvertService myTravelAgencyConvertService = new TravelAgencyConvertService();
 
+
     @Override
-    public ResultVO saveTravelAgency(TravelAgencyVO travelAgencyVO) {
+    public ResultVO saveTravelAgency2MySqlAndRedis(TravelAgencyVO travelAgencyVO) {
         ResultVO returnValue = new ResultVO();
         long beginDate = System.currentTimeMillis();
 
@@ -41,7 +42,7 @@ public class TravelAgencyWriteServiceImpl implements TravelAgencyWriteService{
             //验证
             returnValue = myTravelAgencyValidateService.foundationValidate(travelAgencyVO);
             JTravelAgency jTravelAgency = myTravelAgencyConvertService.fromPO(travelAgencyVO);
-            Integer id = new DataBaseProxyHandler<TravelAgencyWriteBPO>(myRedisUtil).proxy(myTravelAgencyWriteBPO, new ProxyInterface() {
+            Integer result = new DataBaseProxyHandler<TravelAgencyWriteBPO>(myRedisUtil).proxy(myTravelAgencyWriteBPO, new ProxyInterface() {
                 @Override
                 public Object doBegin(Object o, Object[] param) {
                     return null;
@@ -50,12 +51,14 @@ public class TravelAgencyWriteServiceImpl implements TravelAgencyWriteService{
                 @Override
                 public Object doEnd(Object returnObj, Object o,Object[] param) {
                     try {
-                        Log.APP.info("redis开始保存数据，id"+returnObj);
+                        JTravelAgency temp = (JTravelAgency)param[0];
+                        Log.APP.info("redis开始保存数据，id:"+temp.getId());
                         RedisUtil redisUtil = (RedisUtil) o;
                         Integer id = (Integer) returnObj;
                         Jedis jedis = redisUtil.getJedis();
+
                         if(id!=null && id>0){
-                            jedis.set(RedisKeys.TRAVEL_INFO.getKey()+id, JsonUtils.toJSON((JTravelAgency)param[0]));
+                            jedis.set(RedisKeys.TRAVEL_INFO.getKey()+temp.getId(), JsonUtils.toJSON((JTravelAgency)param[0]));
                         }
                     }catch (Exception e){
                         Log.APP.info("Redis添加旅行社异常，信息： "+e.getMessage());
@@ -65,18 +68,84 @@ public class TravelAgencyWriteServiceImpl implements TravelAgencyWriteService{
                     return null;
                 }
             }).addTravelAgency(jTravelAgency);
-            Log.APP.info("mysql保存完毕，id:"+id);
-            if(id<=0)
+            Log.APP.info("mysql保存完毕");
+            if(result<=0)
                 throw new TravelException(ErrorInfoEnum.SYS_ERROR);
 
         }catch (TravelException te){
-            Log.APP.info("添加旅行社异常 ,异常信息:"+te.getErrorInfo());
+            Log.APP.info("添加旅行社业务异常 ,异常信息:"+te.getErrorInfo());
             returnValue = new ResultVO(te.getErrorEnum());
         }catch (Exception e){
-            e.printStackTrace();
-            Log.APP.info("添加旅行社失败,失败原因:["+e.getMessage()+"]");
+            Log.APP.info("添加旅行社系统异常 ,异常信息:"+e.getMessage());
+            returnValue.setErrorCode(ErrorInfoEnum.SYS_ERROR.getCode());
+            returnValue.setErrorInfo(ErrorInfoEnum.SYS_ERROR.getInfo());
         }finally {
             Log.APP.info("添加旅行社完成,longtime:"+(System.currentTimeMillis()-beginDate));
+            return returnValue;
+        }
+    }
+
+    @Override
+    public ResultVO saveTravelAgency(TravelAgencyVO travelAgencyVO) {
+
+        ResultVO returnValue = new ResultVO();
+        // resultVo 成功。
+
+        //获取当前系统毫秒数。
+        long beginDate = System.currentTimeMillis();
+
+        try {
+            Log.APP.info("添加旅行社开始 ");
+            //验证
+            returnValue = myTravelAgencyValidateService.foundationValidate(travelAgencyVO);
+            //转换。
+            JTravelAgency jTravelAgency = myTravelAgencyConvertService.fromPO(travelAgencyVO);
+            //数据库操作。返回影响条数。 -------------
+            Integer result = myTravelAgencyWriteBPO.addTravelAgency(jTravelAgency);
+
+            Log.APP.info("mysql保存完毕");
+            if(result<=0)
+                throw new TravelException(ErrorInfoEnum.SYS_ERROR);
+
+        }catch (TravelException te){
+            //info 旅行社名称不能为空
+            Log.APP.info("添加旅行社业务异常 ,异常信息:"+te.getErrorInfo());
+            returnValue = new ResultVO(te.getErrorEnum());
+        }catch (Exception e){
+            //空指针，月结 ，
+            Log.APP.info("添加旅行社系统异常 ,异常信息:"+e.getMessage());
+            returnValue.setErrorCode(ErrorInfoEnum.SYS_ERROR.getCode());
+            returnValue.setErrorInfo(ErrorInfoEnum.SYS_ERROR.getInfo());
+        }finally {
+            Log.APP.info("添加旅行社完成,longtime:"+(System.currentTimeMillis()-beginDate));
+            return returnValue;
+        }
+    }
+
+
+    @Override
+    public ResultVO updateTravelAgency(TravelAgencyVO travelAgencyVO) {
+        ResultVO returnValue = new ResultVO();
+        long beginDate = System.currentTimeMillis();
+        try{
+            Log.APP.info("更新旅行社开始 ");
+
+            returnValue = myTravelAgencyValidateService.foundationValidate(travelAgencyVO);
+            JTravelAgency jTravelAgency = myTravelAgencyConvertService.fromPO(travelAgencyVO);
+            Integer result = myTravelAgencyWriteBPO.updateTraveAgency(jTravelAgency);
+            Log.APP.info("mysql保存完毕");
+            if(result<=0)
+                throw new TravelException(ErrorInfoEnum.SYS_ERROR);
+
+        }catch (TravelException te){
+            Log.APP.info("更新旅行社业务异常 ,异常信息:"+te.getErrorInfo());
+            returnValue = new ResultVO(te.getErrorEnum());
+        }catch (Exception e){
+            Log.APP.info("更新旅行社系统异常 ,异常信息:"+e.getMessage());
+            returnValue.setErrorCode(ErrorInfoEnum.SYS_ERROR.getCode());
+            returnValue.setErrorInfo(ErrorInfoEnum.SYS_ERROR.getInfo());
+        }finally {
+            Log.APP.info("更新旅行社完成,longtime:"+(System.currentTimeMillis()-beginDate));
             return returnValue;
         }
     }

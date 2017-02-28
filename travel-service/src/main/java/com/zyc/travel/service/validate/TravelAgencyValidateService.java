@@ -9,5 +9,9 @@ import com.zyc.travel.common.exception.TravelException;
  */
 public interface TravelAgencyValidateService {
 
+    //基础验证
     ResultVO foundationValidate(TravelAgencyVO travelAgencyVO) throws TravelException;
+
+    //余额验证
+    //balancev
 }

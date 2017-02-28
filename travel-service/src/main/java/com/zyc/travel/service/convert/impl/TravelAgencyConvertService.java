@@ -12,11 +12,17 @@ import org.springframework.beans.BeanUtils;
  */
 public class TravelAgencyConvertService implements CommonalityConvertService<TravelAgencyVO,JTravelAgency>{
 
+    /**
+     * t_bank_info.     t_atguigu_person.     j_asdas_dsds;
+     * @param vo
+     * @return
+     */
     @Override
     public JTravelAgency fromPO(TravelAgencyVO vo) {
         if(null==vo){
             return new JTravelAgency();
         }
+
         JTravelAgency po = new JTravelAgency();
 
         BeanUtils.copyProperties(vo,po);

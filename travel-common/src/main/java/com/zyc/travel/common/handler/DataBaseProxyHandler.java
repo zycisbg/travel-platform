@@ -30,7 +30,12 @@ public class DataBaseProxyHandler<T> implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable {
+
+
         Object obj = null;
+
+
+
         if (args != null && args.length > 0){
             obj = myProxyInterface.doBegin(param,args);
         }else{
@@ -38,12 +43,20 @@ public class DataBaseProxyHandler<T> implements InvocationHandler {
         }
         if (obj != null)
             return obj;
+
+
         obj = method.invoke(this.delegate, args);
+
+
+
         if (args != null && args.length > 0){
             myProxyInterface.doEnd(obj, param,args);
         }else{
             myProxyInterface.doEnd(obj, param,null);
         }
+
+
+
 
         return obj;
     }

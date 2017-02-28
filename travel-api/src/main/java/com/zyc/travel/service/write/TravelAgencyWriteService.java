@@ -9,9 +9,24 @@ import com.zyc.travel.client.vo.TravelAgencyVO;
 public interface TravelAgencyWriteService {
 
     /**
-     * 添加旅行社
+     * 添加旅行社到mysql、redis
+     * @param travelAgencyVO
+     * @return
+     */
+    ResultVO saveTravelAgency2MySqlAndRedis(TravelAgencyVO travelAgencyVO);
+
+    /**
+     * 添加旅行社到mysql
      * @param travelAgencyVO
      * @return
      */
     ResultVO saveTravelAgency(TravelAgencyVO travelAgencyVO);
+
+    /**
+     * 更新旅行社
+     *
+     * @param travelAgencyVO
+     * @return
+     */
+    ResultVO updateTravelAgency(TravelAgencyVO travelAgencyVO);
 }

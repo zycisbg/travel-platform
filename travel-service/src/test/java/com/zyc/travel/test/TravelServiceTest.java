@@ -45,7 +45,7 @@ public class TravelServiceTest {
         vo.setTravelAddressDetail("3123123");
         vo.setTravelArea("1233123213");
 
-        myTravelAgencyWriteService.saveTravelAgency(vo);
+        myTravelAgencyWriteService.saveTravelAgency2MySqlAndRedis(vo);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class TravelServiceTest {
                 }
                 return null;
             }
-        }).saveTravelAgency(vo);
+        }).saveTravelAgency2MySqlAndRedis(vo);
     }
 
     @Test
@@ -173,27 +173,35 @@ public class TravelServiceTest {
 
     @Test
     public void test2(){
-        Tank t1 = new Tank();
-        Tank t2 = new Tank();
+        TravelAgencyVO vo = new TravelAgencyVO();
+        vo.setTravelType(TravelTypeEnum.valueOf(1));
+        vo.setTravelBalance(new BigDecimal(2000));
+        vo.setTravelPhone("3165424344");
+        vo.setCreateDate(new Date());
+        vo.setTravelRemark("圣诞节弗兰克");
 
-        t1.num = 1;
-        t2.num = 10;
-
-        System.out.println(t1.num+","+t2.num);
-
-        t1 = t2;
-        System.out.println(t1.num+","+t2.num);
-
-        t1.num = 2;
-        System.out.println(t1.num+","+t2.num);
-
+            myTravelAgencyWriteService.saveTravelAgency(vo);
     }
+
+    @Test
+    public void testUpdate(){
+        TravelAgencyVO vo = new TravelAgencyVO();
+        vo.setTravelType(TravelTypeEnum.valueOf(1));
+        vo.setTravelBalance(new BigDecimal(2000));
+        vo.setTravelPhone("3165424344");
+        vo.setCreateDate(new Date());
+        vo.setTravelName("111");
+        vo.setTravelRemark("222");
+        vo.setId(72891);
+
+        myTravelAgencyWriteService.updateTravelAgency(vo);
+    }
+
+
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
     }
 }
-class Tank{
-    int num;
-}
+

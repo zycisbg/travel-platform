@@ -8,4 +8,6 @@ import com.zyc.travel.model.dto.JTravelAgency;
 public interface TravelAgencyWriteBPO {
 
     Integer addTravelAgency(JTravelAgency jTravelAgency);
+
+    Integer updateTraveAgency(JTravelAgency jTravelAgency);
 }

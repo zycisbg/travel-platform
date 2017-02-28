@@ -15,9 +15,14 @@ public class TravelAgencyWriteBPOImpl implements TravelAgencyWriteBPO {
     @Override
     public Integer addTravelAgency(JTravelAgency jTravelAgency) {
         jTravelAgency.setCreateDate(new Date());
-        int result = myJTravelAgencyMapper.insert(jTravelAgency);
-        System.out.println(result);
-        return result;
+        jTravelAgency.setUpdateDate(new Date());
+        return myJTravelAgencyMapper.insert(jTravelAgency);
+    }
+
+    @Override
+    public Integer updateTraveAgency(JTravelAgency jTravelAgency) {
+        jTravelAgency.setUpdateDate(new Date());
+        return myJTravelAgencyMapper.updateByPrimaryKeySelective(jTravelAgency);
     }
 
     public JTravelAgencyMapper getMyJTravelAgencyMapper() {
