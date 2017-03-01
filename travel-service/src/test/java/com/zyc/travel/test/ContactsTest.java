@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 
 /**
+ *
  * Created by zyc on 16/9/7.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -46,4 +47,7 @@ public class ContactsTest {
         myTAContactsReadService.queryList(vo,0,10);
     }
 }
-
+/**
+ *标题  门市价 同行价 行程天数 往返交通 发团日期 剩余座位 提前几天联系 旅行社电话 旅行社名称 线路状态 浏览次数 线路区域 线路标签
+ 交通介绍 行程信息 定金说明 费用包含 费用不含 自费项目 保险说明 预定说明  出行须知  购物说明 成团说明  航班变动声明 收客限制
+ */
