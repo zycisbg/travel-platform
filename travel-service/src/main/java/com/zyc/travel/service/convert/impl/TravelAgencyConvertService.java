@@ -1,6 +1,6 @@
 package com.zyc.travel.service.convert.impl;
 
-import com.zyc.travel.client.util.TravelStatusEnum;
+import com.zyc.travel.client.util.StatusEnum;
 import com.zyc.travel.client.util.TravelTypeEnum;
 import com.zyc.travel.client.vo.TravelAgencyVO;
 import com.zyc.travel.model.dto.JTravelAgency;
@@ -13,7 +13,7 @@ import org.springframework.beans.BeanUtils;
 public class TravelAgencyConvertService implements CommonalityConvertService<TravelAgencyVO,JTravelAgency>{
 
     /**
-     * t_bank_info.     t_atguigu_person.     j_asdas_dsds;
+     *
      * @param vo
      * @return
      */
@@ -48,7 +48,7 @@ public class TravelAgencyConvertService implements CommonalityConvertService<Tra
         BeanUtils.copyProperties(po,vo);
 
         if(null!=po.getTravelStatus())
-            vo.setTravelStatus(TravelStatusEnum.valueOf(po.getTravelStatus()));
+            vo.setTravelStatus(StatusEnum.valueOf(po.getTravelStatus()));
 
         if(null!=po.getTravelType())
             vo.setTravelType(TravelTypeEnum.valueOf(po.getTravelType()));

@@ -6,7 +6,8 @@ package com.zyc.travel.client.vo;
 public enum ErrorInfoEnum implements java.io.Serializable {
 
     SYS_ERROR(999999, "系统异常"),
-    TRAVEL_NAME_IS_NOT_NULL(9999998,"旅行社名称不能为空");
+    TRAVEL_NAME_IS_NOT_NULL(9999998,"旅行社名称不能为空"),
+    TRAVEL_ID_IS_NOT_NULL(9999997,"旅行社id不能为空");
     private int code;
     private String info;
 

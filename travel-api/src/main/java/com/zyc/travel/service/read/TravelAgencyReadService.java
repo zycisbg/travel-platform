@@ -18,5 +18,11 @@ public interface TravelAgencyReadService {
      */
     List<TravelAgencyVO> queryList(TravelAgencyVO param,int start,int limit);
 
+    /**
+     * 根据id查询旅行社对象
+     * @param id
+     * @return
+     */
+    TravelAgencyVO getById(Integer id);
 
 }

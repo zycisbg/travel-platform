@@ -32,8 +32,8 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="j_travel_agency" domainObjectName="JTravelAgency"
-               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
+        <!--<table tableName="j_travel_agency" domainObjectName="JTravelAgency"-->
+               <!--selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>-->
 
         <!--<table tableName="j_travel_agency_address" domainObjectName="JTravelAgencyAddress"-->
                <!--selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>-->

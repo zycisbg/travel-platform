@@ -1,6 +1,6 @@
 package com.zyc.travel.client.vo;
 
-import com.zyc.travel.client.util.TravelStatusEnum;
+import com.zyc.travel.client.util.StatusEnum;
 import com.zyc.travel.client.util.TravelTypeEnum;
 
 import java.io.Serializable;
@@ -24,7 +24,7 @@ public class TravelAgencyVO implements Serializable {
     private String travelRemark;
 
 
-    private TravelStatusEnum travelStatus;
+    private StatusEnum travelStatus;
 
 
     private TravelTypeEnum travelType;
@@ -91,11 +91,11 @@ public class TravelAgencyVO implements Serializable {
         this.travelRemark = travelRemark;
     }
 
-    public TravelStatusEnum getTravelStatus() {
+    public StatusEnum getTravelStatus() {
         return travelStatus;
     }
 
-    public void setTravelStatus(TravelStatusEnum travelStatus) {
+    public void setTravelStatus(StatusEnum travelStatus) {
         this.travelStatus = travelStatus;
     }
 
@@ -181,6 +181,23 @@ public class TravelAgencyVO implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "TravelAgencyVO{" +
+                  "id=" + id +
+                  ", travelName='" + travelName + '\'' +
+                  ", travelTel='" + travelTel + '\'' +
+                  ", travelPhone='" + travelPhone + '\'' +
+                  ", travelRemark='" + travelRemark + '\'' +
+                  ", travelStatus=" + travelStatus +
+                  ", travelType=" + travelType +
+                  ", travelBalance=" + travelBalance +
+                  ", travelArea='" + travelArea + '\'' +
+                  ", travelAddressDetail='" + travelAddressDetail + '\'' +
+                  ", businessLicenseUrl='" + businessLicenseUrl + '\'' +
+                  ", procedureProveUrl='" + procedureProveUrl + '\'' +
+                  ", username='" + username + '\'' +
+                  ", password='" + password + '\'' +
+                  ", createDate=" + createDate +
+                  ", updateDate=" + updateDate +
+                  '}';
     }
 }

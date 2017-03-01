@@ -9,5 +9,17 @@
         <property name="myTravelAgencyWriteBPO" ref="myTravelAgencyWriteBPO"/>
         <property name="myRedisUtil" ref="myRedisUtil" />
     </bean>
+    <!-- 旅行社读操作 -->
+    <bean id="myTravelAgencyReadService" class="com.zyc.travel.service.read.impl.TravelAgencyReadServiceImpl">
+        <property name="myTravelAgencyReadBPO" ref="myTravelAgencyReadBPO"/>
+    </bean>
 
+    <!-- 联系人写操作 -->
+    <bean id="myTAContactsWriteService" class="com.zyc.travel.service.write.impl.TAContactsWriteServiceImpl">
+        <property name="myTAContactsWriteBPO" ref="myTAContactsWriteBPO"/>
+    </bean>
+    <!-- 联系人读操作 -->
+    <bean id="myTAContactsReadService" class="com.zyc.travel.service.read.impl.TAContactsReadServiceImpl">
+        <property name="myTAContactsReadBPO" ref="myTAContactsReadBPO"/>
+    </bean>
 </beans>

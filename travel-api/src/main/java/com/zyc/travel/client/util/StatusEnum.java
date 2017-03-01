@@ -3,18 +3,18 @@ package com.zyc.travel.client.util;
 /**
  * Created by zyc on 17/1/19.
  */
-public enum TravelStatusEnum {
+public enum StatusEnum {
     ALREADY_FORBIDDEN(0,"已禁用"),ALREADY_START(1,"启用中");
 
     private int code;
 
     private String info;
-    TravelStatusEnum(int code, String info) {
+    StatusEnum(int code, String info) {
         this.code = code;
         this.info = info;
     }
 
-    public static TravelStatusEnum valueOf(int code) {
+    public static StatusEnum valueOf(int code) {
         switch (code) {
             case 0:
                 return ALREADY_FORBIDDEN;

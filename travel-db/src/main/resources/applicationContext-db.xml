@@ -10,6 +10,10 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 
-
+    <bean id="myJTravelAgencyContactsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"
+                  value="com.zyc.travel.model.mapper.JTravelAgencyContactsMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
 
 </beans>

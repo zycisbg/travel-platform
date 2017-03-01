@@ -6,10 +6,20 @@
 
     <!-- 旅行社读操作 -->
     <bean id="myTravelAgencyReadBPO" class="com.zyc.travel.bpo.read.impl.TravelAgencyReadBPOImpl">
-
+        <property name="myJTravelAgencyMapper" ref="myJTravelAgencyMapper" />
     </bean>
     <!-- 旅行社写操作 -->
     <bean id="myTravelAgencyWriteBPO" class="com.zyc.travel.bpo.write.impl.TravelAgencyWriteBPOImpl">
         <property name="myJTravelAgencyMapper" ref="myJTravelAgencyMapper" />
     </bean>
+
+    <!-- 联系人读操作 -->
+    <bean id="myTAContactsReadBPO" class="com.zyc.travel.bpo.read.impl.TAContactsReadBPOImpl">
+        <property name="myJTravelAgencyContactsMapper" ref="myJTravelAgencyContactsMapper"/>
+    </bean>
+    <!-- 联系人写操作 -->
+    <bean id="myTAContactsWriteBPO" class="com.zyc.travel.bpo.write.impl.TAContactsWriteBPOImpl">
+        <property name="myJTravelAgencyContactsMapper" ref="myJTravelAgencyContactsMapper"/>
+    </bean>
+
 </beans>

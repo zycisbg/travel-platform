@@ -9,6 +9,7 @@ import com.zyc.travel.common.handler.ProxyInterface;
 import com.zyc.travel.common.util.JsonUtils;
 import com.zyc.travel.common.util.RedisUtil;
 import com.zyc.travel.service.keys.RedisKeys;
+import com.zyc.travel.service.read.TravelAgencyReadService;
 import com.zyc.travel.service.write.TravelAgencyWriteService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,7 @@ import redis.clients.jedis.Jedis;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by zyc on 16/9/7.
@@ -30,6 +32,9 @@ public class TravelServiceTest {
 
     @Resource
     private TravelAgencyWriteService myTravelAgencyWriteService;
+
+    @Resource
+    private TravelAgencyReadService myTravelAgencyReadService;
 
 
     @Resource
@@ -174,11 +179,11 @@ public class TravelServiceTest {
     @Test
     public void test2(){
         TravelAgencyVO vo = new TravelAgencyVO();
-        vo.setTravelType(TravelTypeEnum.valueOf(1));
+        vo.setTravelName("小旅行社");
         vo.setTravelBalance(new BigDecimal(2000));
         vo.setTravelPhone("3165424344");
         vo.setCreateDate(new Date());
-        vo.setTravelRemark("圣诞节弗兰克");
+        vo.setTravelRemark("备注");
 
             myTravelAgencyWriteService.saveTravelAgency(vo);
     }
@@ -197,6 +202,14 @@ public class TravelServiceTest {
         myTravelAgencyWriteService.updateTravelAgency(vo);
     }
 
+
+    @Test
+    public void testGet(){
+//        TravelAgencyVO byId = myTravelAgencyReadService.getById(72906);
+//        System.out.println(byId);
+        List<TravelAgencyVO> travelAgencyVOs = myTravelAgencyReadService.queryList(new TravelAgencyVO(), 0, 10);
+        System.out.println(travelAgencyVOs);
+    }
 
 
     @Override
