@@ -41,10 +41,10 @@
         <table tableName="j_travel_line" domainObjectName="JTravelLine"
                selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
 
-        <table tableName="j_travel_line_detail" domainObjectName="JTravelLineDetail"
-               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
-        <table tableName="j_travel_line_ext" domainObjectName="JTravelLineExt"
-               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
+        <!--<table tableName="j_travel_line_detail" domainObjectName="JTravelLineDetail"-->
+               <!--selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>-->
+        <!--<table tableName="j_travel_line_ext" domainObjectName="JTravelLineExt"-->
+               <!--selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>-->
 
 
 

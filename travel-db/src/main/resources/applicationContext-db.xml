@@ -16,4 +16,22 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
     </bean>
 
+    <bean id="myJTravelLineMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"
+                  value="com.zyc.travel.model.mapper.JTravelLineMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
+
+    <bean id="myJTravelLineExtMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"
+                  value="com.zyc.travel.model.mapper.JTravelLineExtMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
+
+    <bean id="myJTravelLineDetailMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"
+                  value="com.zyc.travel.model.mapper.JTravelLineDetailMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
+
 </beans>

@@ -34,8 +34,6 @@ public class DataBaseProxyHandler<T> implements InvocationHandler {
 
         Object obj = null;
 
-
-
         if (args != null && args.length > 0){
             obj = myProxyInterface.doBegin(param,args);
         }else{
@@ -44,9 +42,7 @@ public class DataBaseProxyHandler<T> implements InvocationHandler {
         if (obj != null)
             return obj;
 
-
         obj = method.invoke(this.delegate, args);
-
 
 
         if (args != null && args.length > 0){

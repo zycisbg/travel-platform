@@ -22,4 +22,25 @@
     <bean id="myTAContactsReadService" class="com.zyc.travel.service.read.impl.TAContactsReadServiceImpl">
         <property name="myTAContactsReadBPO" ref="myTAContactsReadBPO"/>
     </bean>
+
+    <!-- 旅行线路读操作 -->
+
+    <!-- 旅行线路写操作 -->
+    <bean id="myTravelLineWriteService" class="com.zyc.travel.service.write.impl.TravelLineWriteServiceImpl">
+        <property name="myRedisUtil" ref="myRedisUtil"/>
+        <property name="myTravelLineValidateService" ref="myTravelLineValidateService"/>
+        <property name="myTravelLineWriteBPO" ref="myTravelLineWriteBPO"/>
+    </bean>
+
+    <!-- 旅行线路验证类 -->
+    <bean id="myTravelLineValidateService" class="com.zyc.travel.service.validate.impl.TravelLineValidateServiceImpl">
+        <property name="myTravelLineDetailValidateService" ref="myTravelLineDetailValidateService" />
+        <property name="myTravelLineExtValidateService" ref="myTravelLineExtValidateService" />
+    </bean>
+    <bean id="myTravelLineDetailValidateService" class="com.zyc.travel.service.validate.impl.TravelLineDetailValidateServiceImpl">
+
+    </bean>
+    <bean id="myTravelLineExtValidateService" class="com.zyc.travel.service.validate.impl.TravelLineExtValidateServiceImpl">
+
+    </bean>
 </beans>

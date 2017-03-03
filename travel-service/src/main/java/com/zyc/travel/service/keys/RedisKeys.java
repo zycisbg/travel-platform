@@ -4,7 +4,8 @@ package com.zyc.travel.service.keys;
  * Created by songxinlei on 2016/8/29.
  */
 public enum RedisKeys {
-    TRAVEL_INFO("travel_info:","旅行社的缓存数据");
+    TRAVEL_INFO("travel_info:","旅行社的缓存数据"),
+    TRAVEL_LINE("travel_line:","旅行线路的缓存数据");
 
     private String key;
 

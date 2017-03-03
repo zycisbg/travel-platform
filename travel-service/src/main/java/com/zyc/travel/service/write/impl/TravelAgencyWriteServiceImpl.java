@@ -54,10 +54,10 @@ public class TravelAgencyWriteServiceImpl implements TravelAgencyWriteService{
                         JTravelAgency temp = (JTravelAgency)param[0];
                         Log.APP.info("redis开始保存数据，id:"+temp.getId());
                         RedisUtil redisUtil = (RedisUtil) o;
-                        Integer id = (Integer) returnObj;
+                        Integer result = (Integer) returnObj;
                         Jedis jedis = redisUtil.getJedis();
 
-                        if(id!=null && id>0){
+                        if(result!=null && result>0){
                             jedis.set(RedisKeys.TRAVEL_INFO.getKey()+temp.getId(), JsonUtils.toJSON((JTravelAgency)param[0]));
                         }
                     }catch (Exception e){
