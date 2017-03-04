@@ -8,6 +8,7 @@ import com.zyc.travel.client.vo.TravelLineVO;
 import com.zyc.travel.common.util.JsonUtils;
 import com.zyc.travel.common.util.RedisUtil;
 import com.zyc.travel.model.dto.JTravelLine;
+import com.zyc.travel.service.read.TravelLineReadService;
 import com.zyc.travel.service.write.TravelLineWriteService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +32,9 @@ public class LineTest {
 
     @Resource
     private TravelLineWriteService myTravelLineWriteService;
+
+    @Resource
+    private TravelLineReadService myTravelLineReadService;
 
     @Resource
     private RedisUtil myRedisUtil;
@@ -97,6 +101,13 @@ public class LineTest {
         JTravelLine jTravelLine = JsonUtils.fromJSON(s, JTravelLine.class);
         System.out.println(System.currentTimeMillis()-l);
         System.out.println(jTravelLine);
+    }
+
+    @Test
+    public void testGet(){
+        TravelLineVO vo = new TravelLineVO();
+        List<TravelLineVO> travelLineVOList = myTravelLineReadService.queryList(vo, null, null);
+        System.out.println(travelLineVOList.size());
     }
 }
 /**

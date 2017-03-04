@@ -10,14 +10,14 @@ import java.util.List;
 public interface TravelLineReadService {
 
     /**
-     * 根据参数查询旅行社列表
+     * 根据参数查询旅行线路列表
      * @param travelLineVO
      * @return
      */
     List<TravelLineVO> queryList(TravelLineVO travelLineVO,Integer start,Integer limit);
 
     /**
-     * 根据id查询旅行社
+     * 根据id查询旅行线路
      * @param id
      * @return
      */

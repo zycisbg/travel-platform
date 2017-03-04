@@ -153,6 +153,26 @@ public class JTravelLine implements Serializable {
 
     private List<JTravelLineDetail> jTravelLineDetailList;
 
+    private Date goDateBegin;
+
+    private Date goDateEnd;
+
+    public Date getGoDateBegin() {
+        return goDateBegin;
+    }
+
+    public void setGoDateBegin(Date goDateBegin) {
+        this.goDateBegin = goDateBegin;
+    }
+
+    public Date getGoDateEnd() {
+        return goDateEnd;
+    }
+
+    public void setGoDateEnd(Date goDateEnd) {
+        this.goDateEnd = goDateEnd;
+    }
+
     public JTravelLineExt getjTravelLineExt() {
         return jTravelLineExt;
     }

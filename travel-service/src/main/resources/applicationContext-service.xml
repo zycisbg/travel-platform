@@ -24,7 +24,10 @@
     </bean>
 
     <!-- 旅行线路读操作 -->
-
+    <bean id="myTravelLineReadService" class="com.zyc.travel.service.read.impl.TravelLineReadServiceImpl">
+        <property name="myRedisUtil" ref="myRedisUtil"/>
+        <property name="myTravelLineReadBPO" ref="myTravelLineReadBPO"/>
+    </bean>
     <!-- 旅行线路写操作 -->
     <bean id="myTravelLineWriteService" class="com.zyc.travel.service.write.impl.TravelLineWriteServiceImpl">
         <property name="myRedisUtil" ref="myRedisUtil"/>

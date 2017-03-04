@@ -23,7 +23,9 @@
     </bean>
 
     <!-- 旅行线路读操作 -->
-
+    <bean id="myTravelLineReadBPO" class="com.zyc.travel.bpo.read.impl.TravelLineReadBPOImpl">
+        <property name="myJTravelLineMapper" ref="myJTravelLineMapper" />
+    </bean>
     <!-- 旅行线路写操作 -->
     <bean id="myTravelLineWriteBPO" class="com.zyc.travel.bpo.write.impl.TravelLineWriteBPOImpl">
         <property name="myJTravelLineDetailMapper" ref="myJTravelLineDetailMapper"/>
