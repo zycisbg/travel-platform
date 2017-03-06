@@ -58,7 +58,7 @@ public class TravelLineReadBPOImpl implements TravelLineReadBPO{
 
     @Override
     public JTravelLine getLineById(Integer id) {
-        return null;
+        return myJTravelLineMapper.getById(id);
     }
 
     public JTravelLineMapper getMyJTravelLineMapper() {

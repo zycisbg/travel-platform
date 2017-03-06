@@ -138,6 +138,7 @@
     from j_travel_line
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -494,4 +495,50 @@
       update_date = #{updateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <sql id="Base_Column_List_Union" >
+
+    jtl.id, jtl.travel_id, jtl.travel_tel, jtl.travel_name, jtl.title, jtl.business_price, jtl.agency_price,
+    jtl.travel_day_count,jtl.transportation, jtl.go_date, jtl.surplus_count, jtl.advance_day_count,
+    jtl.look_count, jtl.line_area,jtl.line_tips, jtl.status, jtl.create_date, jtl.update_date
+  </sql>
+  <resultMap id="BaseResultMapUnion" type="com.zyc.travel.model.dto.JTravelLine" >
+
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="travel_id" property="travelId" jdbcType="INTEGER" />
+    <result column="travel_tel" property="travelTel" jdbcType="VARCHAR" />
+    <result column="travel_name" property="travelName" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="business_price" property="businessPrice" jdbcType="DECIMAL" />
+    <result column="agency_price" property="agencyPrice" jdbcType="DECIMAL" />
+    <result column="travel_day_count" property="travelDayCount" jdbcType="INTEGER" />
+    <result column="transportation" property="transportation" jdbcType="VARCHAR" />
+    <result column="go_date" property="goDate" jdbcType="TIMESTAMP" />
+    <result column="surplus_count" property="surplusCount" jdbcType="INTEGER" />
+    <result column="advance_day_count" property="advanceDayCount" jdbcType="INTEGER" />
+    <result column="look_count" property="lookCount" jdbcType="INTEGER" />
+    <result column="line_area" property="lineArea" jdbcType="VARCHAR" />
+    <result column="line_tips" property="lineTips" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <association property="jTravelLineExt"
+                 resultMap="com.zyc.travel.model.mapper.JTravelLineExtMapper.ResultMapWithBLOBsUnion"/>
+    <collection property="jTravelLineDetailList" javaType="ArrayList"
+                ofType="com.zyc.travel.model.dto.JTravelLineDetail"
+                resultMap="com.zyc.travel.model.mapper.JTravelLineDetailMapper.ResultMapWithBLOBsUnion" />
+  </resultMap>
+  <select id="getById" resultMap="BaseResultMapUnion" parameterType="java.lang.Integer" >
+
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List_Union" />,
+    <include refid="com.zyc.travel.model.mapper.JTravelLineExtMapper.Blob_Column_List_Union" />,
+    <include refid="com.zyc.travel.model.mapper.JTravelLineDetailMapper.Blob_Column_List_Union" />
+    from j_travel_line jtl
+    left outer join j_travel_line_detail jtld
+    on jtl.id = jtld.line_id
+    left outer join j_travel_line_ext jtle
+    on jtl.id = jtle.id
+    where jtl.id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

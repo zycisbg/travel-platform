@@ -44,15 +44,11 @@ public class DataBaseProxyHandler<T> implements InvocationHandler {
 
         obj = method.invoke(this.delegate, args);
 
-
         if (args != null && args.length > 0){
             myProxyInterface.doEnd(obj, param,args);
         }else{
             myProxyInterface.doEnd(obj, param,null);
         }
-
-
-
 
         return obj;
     }

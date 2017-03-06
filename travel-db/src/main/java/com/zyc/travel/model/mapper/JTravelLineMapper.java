@@ -2,8 +2,9 @@ package com.zyc.travel.model.mapper;
 
 import com.zyc.travel.model.dto.JTravelLine;
 import com.zyc.travel.model.dto.JTravelLineExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface JTravelLineMapper {
     /**
@@ -93,4 +94,11 @@ public interface JTravelLineMapper {
      * @mbggenerated Thu Mar 02 14:58:16 CST 2017
      */
     int updateByPrimaryKey(JTravelLine record);
+
+    /**
+     * 查询详细信息(连表查询)
+     * @param id
+     * @return
+     */
+    JTravelLine getById(Integer id);
 }

@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.lang.*;
 
 /**
  *
@@ -43,8 +44,12 @@ public class LineTest {
     @Test
     public void testWrite() throws Exception{
         TravelLineVO travelLineVO = new TravelLineVO();
-        travelLineVO.setTravelName("小旅行社");
+        travelLineVO.setTravelName("邯郸旅行社");
         travelLineVO.setStatus(LineStatusEnum.OUT_OF_DATE);
+        travelLineVO.setTravelTel("18631067887");
+        travelLineVO.setTitle("青岛两日游");
+        travelLineVO.setAgencyPrice(200L);
+
         travelLineVO.setTravelId(1);
         travelLineVO.setGoDate(new Date());
         travelLineVO.setId(5);
@@ -101,16 +106,31 @@ public class LineTest {
         JTravelLine jTravelLine = JsonUtils.fromJSON(s, JTravelLine.class);
         System.out.println(System.currentTimeMillis()-l);
         System.out.println(jTravelLine);
+
     }
+
+    @Test
+    public void testGetById(){
+        TravelLineVO byId = myTravelLineReadService.getById(5);
+        System.out.println(byId);
+    }
+
+    /**
+     * list.add();
+     * set list
+     * hashmap hashtable
+     * concurrtHashmap
+     */
 
     @Test
     public void testGet(){
         TravelLineVO vo = new TravelLineVO();
         List<TravelLineVO> travelLineVOList = myTravelLineReadService.queryList(vo, null, null);
         System.out.println(travelLineVOList.size());
+        List list = new ArrayList(20);
     }
 }
 /**
  *标题  门市价 同行价 行程天数 往返交通 发团日期 剩余座位 提前几天联系 旅行社电话 旅行社名称 线路状态 浏览次数 线路区域 线路标签
- 行程信息 交通介绍  定金说明 费用包含 费用不含 自费项目 保险说明 预定说明  出行须知  购物说明 成团说明  航班变动声明 收客限制
+    行程信息 交通介绍  定金说明 费用包含 费用不含 自费项目 保险说明 预定说明  出行须知  购物说明 成团说明  航班变动声明 收客限制
  */
