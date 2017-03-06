@@ -42,7 +42,7 @@ public class ZYCTest {
         list.add(3);
         for(Integer num : list){
             System.out.println(num);
-          //  list.add(4);
+          list.add(4);
         }
     }
     @Test
@@ -62,4 +62,5 @@ public class ZYCTest {
         Integer integer = num.get(3, TimeUnit.SECONDS);
         System.out.println(integer);
     }
+
 }
