@@ -1,5 +1,6 @@
 package com.zyc.travel.service.write.impl;
 
+import com.mchange.v2.ser.SerializableUtils;
 import com.zyc.travel.bpo.write.TravelLineWriteBPO;
 import com.zyc.travel.client.vo.ErrorInfoEnum;
 import com.zyc.travel.client.vo.ResultVO;
@@ -7,7 +8,6 @@ import com.zyc.travel.client.vo.TravelLineVO;
 import com.zyc.travel.common.exception.TravelException;
 import com.zyc.travel.common.handler.DataBaseProxyHandler;
 import com.zyc.travel.common.handler.ProxyInterface;
-import com.zyc.travel.common.util.JsonUtils;
 import com.zyc.travel.common.util.Log;
 import com.zyc.travel.common.util.RedisUtil;
 import com.zyc.travel.model.dto.JTravelLine;
@@ -72,7 +72,7 @@ public class TravelLineWriteServiceImpl implements TravelLineWriteService{
                             Jedis jedis = redisUtil.getJedis();
 
                             if(result!=null && result>0){
-                                jedis.set(RedisKeys.TRAVEL_LINE.getKey()+temp.getId(), JsonUtils.toJSON((JTravelLine)param[0]));
+                                jedis.set((RedisKeys.TRAVEL_LINE.getKey()+temp.getId()).getBytes(), SerializableUtils.toByteArray(param[0]));
                                 Log.APP.info("redis保存一条线路完毕");
                             }
 
@@ -111,7 +111,7 @@ public class TravelLineWriteServiceImpl implements TravelLineWriteService{
                             if(idList!=null && idList.size()!=0){
                                 for(Integer id :idList){
                                     temp.setId(id);
-                                    jedis.set(RedisKeys.TRAVEL_LINE.getKey()+id, JsonUtils.toJSON((JTravelLine)temp));
+                                    jedis.set((RedisKeys.TRAVEL_LINE.getKey()+temp.getId()).getBytes(), SerializableUtils.toByteArray(temp));
                                 }
                                 Log.APP.info("redis保存多条线路完毕");
                             }
@@ -174,7 +174,8 @@ public class TravelLineWriteServiceImpl implements TravelLineWriteService{
                         Jedis jedis = redisUtil.getJedis();
 
                         if(result!=null && result>0){
-                            jedis.set(RedisKeys.TRAVEL_LINE.getKey()+temp.getId(), JsonUtils.toJSON((JTravelLine)param[0]));
+                            jedis.set((RedisKeys.TRAVEL_LINE.getKey()+temp.getId()).getBytes(), SerializableUtils.toByteArray(param[0]));
+
                             Log.APP.info("redis更新线路完毕");
                         }
 

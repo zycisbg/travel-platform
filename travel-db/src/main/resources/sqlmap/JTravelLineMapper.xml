@@ -134,7 +134,7 @@
       #{status,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zyc.travel.model.dto.JTravelLine">
+  <insert id="insertSelective" parameterType="com.zyc.travel.model.dto.JTravelLine" useGeneratedKeys="true" keyProperty="id">
     insert into j_travel_line
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

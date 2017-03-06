@@ -1,10 +1,10 @@
 package com.zyc.travel.service.read.impl;
 
+import com.mchange.v2.ser.SerializableUtils;
 import com.zyc.travel.bpo.read.TravelLineReadBPO;
 import com.zyc.travel.client.vo.TravelLineVO;
 import com.zyc.travel.common.handler.DataBaseProxyHandler;
 import com.zyc.travel.common.handler.ProxyInterface;
-import com.zyc.travel.common.util.JsonUtils;
 import com.zyc.travel.common.util.Log;
 import com.zyc.travel.common.util.RedisUtil;
 import com.zyc.travel.model.dto.JTravelLine;
@@ -45,10 +45,10 @@ public class TravelLineReadServiceImpl implements TravelLineReadService{
                         RedisUtil redisUtil = (RedisUtil) o;
                         // 标示符 + lineId
                         Jedis jedis = redisUtil.getJedis();
-                        String value = jedis.get(RedisKeys.TRAVEL_LINE.getKey() + param[0]);
+                        byte[] value = jedis.get((RedisKeys.TRAVEL_LINE.getKey() + param[0]).getBytes());
                         Log.APP.info("Redis 查询结果 value:"+value);
                         if (value != null) {
-                            return JsonUtils.fromJSON(value,JTravelLine.class);
+                            return SerializableUtils.fromByteArray(value);
                         }else{
                             Log.APP.info("从mysql中获取数据-->>");
                         }

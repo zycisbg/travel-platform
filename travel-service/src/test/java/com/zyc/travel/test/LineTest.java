@@ -2,6 +2,7 @@ package com.zyc.travel.test;
 
 
 import com.zyc.travel.client.util.LineStatusEnum;
+import com.zyc.travel.client.util.LineTipsEnum;
 import com.zyc.travel.client.vo.TravelLineDetailVO;
 import com.zyc.travel.client.vo.TravelLineExtVO;
 import com.zyc.travel.client.vo.TravelLineVO;
@@ -50,26 +51,58 @@ public class LineTest {
         travelLineVO.setTravelTel("18631067887");
         travelLineVO.setTitle("青岛两日游");
         travelLineVO.setAgencyPrice(new BigDecimal(200));
+        travelLineVO.setBusinessPrice(new BigDecimal(220));
+        travelLineVO.setTravelDayCount(3);
+        travelLineVO.setTransportation("飞机");
+        travelLineVO.setSurplusCount(30);
+        travelLineVO.setAdvanceDayCount(5);
+        travelLineVO.setLineArea("beijing");
+        travelLineVO.setLineTips(LineTipsEnum.COMMON);
+        travelLineVO.setStatus(LineStatusEnum.OUT_OF_DATE);
 
         travelLineVO.setTravelId(1);
         travelLineVO.setGoDate(new Date());
-        travelLineVO.setId(5);
+//        travelLineVO.setId(5);
 
         TravelLineDetailVO travelLineDetailVO1 = new TravelLineDetailVO();
         travelLineDetailVO1.setDayCount(1);
-        travelLineDetailVO1.setDetail("上海玩");
-        travelLineDetailVO1.setTitle("上海玩标题");
-        travelLineDetailVO1.setId(3);
+        travelLineDetailVO1.setDetail("餐饮 早餐：自理   中餐：自理   晚餐：自理\n" +
+                  "\n" +
+                  "住宿普吉当地特色5* 酒店或同级五星\n" +
+                  "\n" +
+                  "参考航班 KA905 0800/1140转KA268 1515/1750\n" +
+                  "\n" +
+                  "泰国的普吉岛是最让人喜爱的度假海岛。这里有你所需要的一切度假元素" +
+                  "：畅快的海风，湛蓝的大海，摇曳的椰树，花枝招展的姑娘们，热情的当地居民，通宵的购物街，" +
+                  "high到爆的酒吧，饕餮的海鲜以及各种人文景观和自然风景。或许你也有这种感觉，生活在钢筋水泥和工作的重压之中，" +
+                  "心心念念的就是穿着舒服的花衬衫，喝着冰椰汁，躺在能看到大海的躺椅上，没有人认识你，话能随便说，" +
+                  "事情能随便做。这，大概就是普吉岛经久不衰的原因吧。\n" +
+                  "抵达后专业司机导游接机，入住酒店休息。\n" +
+                  "备注：由于登记入住需要时间，请各位游客耐心等待。我们会根据路线尽快帮各位办好入住手续；酒店内小费风俗为：每天20泰铢，一般纸币置于床头即可。\n");
+        travelLineDetailVO1.setTitle("北京--青岛（潍坊中转）");
+        //travelLineDetailVO1.setId(3);
+
+
         TravelLineDetailVO travelLineDetailVO2 = new TravelLineDetailVO();
         travelLineDetailVO2.setDayCount(2);
-        travelLineDetailVO2.setDetail("北京玩");
-        travelLineDetailVO2.setTitle("北京玩标题");
-        travelLineDetailVO2.setId(4);
+        travelLineDetailVO2.setDetail("餐饮 早餐：自理   中餐：自理   晚餐：自理\n" +
+                  "\n" +
+                  "住宿普吉当地特色5* 酒店或同级五星\n" +
+                  "\n" +
+                  "参考航班 KA905 0800/1140转KA268 1515/1750\n" +
+                  "\n" +
+                  "泰国的普吉岛是最让人喜爱的度假海岛。这里有你所需要的一切度假元素" +
+                  "：畅快的海风，湛蓝的大海，摇曳的椰树，花枝招展的姑娘们，热情的当地居民，通宵的购物街，" +
+                  "high到爆的酒吧，饕餮的海鲜以及各种人文景观和自然风景。或许你也有这种感觉，生活在钢筋水泥和工作的重压之中，" +
+                  "心心念念的就是穿着舒服的花衬衫，喝着冰椰汁，躺在能看到大海的躺椅上，没有人认识你，话能随便说，" +
+                  "事情能随便做。这，大概就是普吉岛经久不衰的原因吧。\n" +
+                  "抵达后专业司机导游接机，入住酒店休息。\n" +
+                  "备注：由于登记入住需要时间，请各位游客耐心等待。我们会根据路线尽快帮各位办好入住手续；酒店内小费风俗为：每天20泰铢，一般纸币置于床头即可。\n");
+        travelLineDetailVO2.setTitle("日照--青岛（潍坊中转）");
 
         TravelLineExtVO travelLineExtVO = new TravelLineExtVO();
         travelLineExtVO.setCustomerLimit("笨笨不收");
         travelLineExtVO.setShoppingDetail("买买买");
-        travelLineExtVO.setId(5);
 
         List<TravelLineDetailVO> travelLineDetailVOList = new ArrayList<>();
 
@@ -84,9 +117,9 @@ public class LineTest {
 
         List dateList = new ArrayList();
 
-        dateList.add(new Date());
-        dateList.add(date1);
-        dateList.add(date2);
+        //dateList.add(new Date());
+        //dateList.add(date1);
+        //dateList.add(date2);
         dateList.add(date3);
 
 
@@ -94,7 +127,7 @@ public class LineTest {
         travelLineVO.setTravelLineExtVO(travelLineExtVO);
         travelLineVO.setDateList(dateList);
 
-        myTravelLineWriteService.updateTravelLine(travelLineVO);
+        myTravelLineWriteService.addTravelLine(travelLineVO);
 
 
     }
@@ -112,7 +145,7 @@ public class LineTest {
 
     @Test
     public void testGetById(){
-        TravelLineVO byId = myTravelLineReadService.getById(5);
+        TravelLineVO byId = myTravelLineReadService.getById(29);
         System.out.println(byId);
     }
 
