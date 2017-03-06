@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,7 +49,7 @@ public class LineTest {
         travelLineVO.setStatus(LineStatusEnum.OUT_OF_DATE);
         travelLineVO.setTravelTel("18631067887");
         travelLineVO.setTitle("青岛两日游");
-        travelLineVO.setAgencyPrice(200L);
+        travelLineVO.setAgencyPrice(new BigDecimal(200));
 
         travelLineVO.setTravelId(1);
         travelLineVO.setGoDate(new Date());

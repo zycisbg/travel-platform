@@ -49,6 +49,8 @@ public class TravelLineReadServiceImpl implements TravelLineReadService{
                         Log.APP.info("Redis 查询结果 value:"+value);
                         if (value != null) {
                             return JsonUtils.fromJSON(value,JTravelLine.class);
+                        }else{
+                            Log.APP.info("从mysql中获取数据-->>");
                         }
                     } catch (Exception e) {
                         Log.APP.info("Redis 数据异常 信息[" + e.getMessage() + "]");

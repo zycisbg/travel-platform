@@ -4,6 +4,7 @@ import com.zyc.travel.client.util.LineStatusEnum;
 import com.zyc.travel.client.util.LineTipsEnum;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class TravelLineVO implements Serializable{
 
     private String title;
 
-    private Long businessPrice;
+    private BigDecimal businessPrice;
 
-    private Long agencyPrice;
+    private BigDecimal agencyPrice;
 
     private Integer travelDayCount;
 
@@ -127,19 +128,19 @@ public class TravelLineVO implements Serializable{
         this.title = title;
     }
 
-    public Long getBusinessPrice() {
+    public BigDecimal getBusinessPrice() {
         return businessPrice;
     }
 
-    public void setBusinessPrice(Long businessPrice) {
+    public void setBusinessPrice(BigDecimal businessPrice) {
         this.businessPrice = businessPrice;
     }
 
-    public Long getAgencyPrice() {
+    public BigDecimal getAgencyPrice() {
         return agencyPrice;
     }
 
-    public void setAgencyPrice(Long agencyPrice) {
+    public void setAgencyPrice(BigDecimal agencyPrice) {
         this.agencyPrice = agencyPrice;
     }
 

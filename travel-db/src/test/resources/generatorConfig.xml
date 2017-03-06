@@ -11,9 +11,22 @@
         <!-- Pagination -->
         <plugin type="com.zyc.travel.generate.MySQLPaginationPlugin"></plugin>
 
+        <!-- 注释 -->
+        <commentGenerator >
+            <property name="suppressAllComments" value="true"/><!-- 是否取消注释 -->
+            <property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳-->
+        </commentGenerator>
+        
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/travel_db?useUnicode=true"
                         userId="root" password="123456"/>
+
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
 
         <javaModelGenerator targetPackage="com.zyc.travel.model.dto"
                             targetProject="src/main/java">
@@ -32,19 +45,19 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!--<table tableName="j_travel_agency" domainObjectName="JTravelAgency"-->
-               <!--selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>-->
+        <table tableName="j_travel_agency" domainObjectName="JTravelAgency"
+               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
 
-        <!--<table tableName="j_travel_agency_address" domainObjectName="JTravelAgencyAddress"-->
-               <!--selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>-->
+        <table tableName="j_travel_agency_contacts" domainObjectName="JTravelAgencyContacts"
+               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
 
         <table tableName="j_travel_line" domainObjectName="JTravelLine"
                selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
 
-        <!--<table tableName="j_travel_line_detail" domainObjectName="JTravelLineDetail"-->
-               <!--selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>-->
-        <!--<table tableName="j_travel_line_ext" domainObjectName="JTravelLineExt"-->
-               <!--selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>-->
+        <table tableName="j_travel_line_detail" domainObjectName="JTravelLineDetail"
+               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
+        <table tableName="j_travel_line_ext" domainObjectName="JTravelLineExt"
+               selectByPrimaryKeyQueryId="true" selectByExampleQueryId="true"/>
 
 
 
