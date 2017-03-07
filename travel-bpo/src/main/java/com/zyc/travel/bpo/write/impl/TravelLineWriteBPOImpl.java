@@ -90,6 +90,11 @@ public class TravelLineWriteBPOImpl implements TravelLineWriteBPO {
         return count;
     }
 
+    @Override
+    public Integer updateOutDateLine() {
+        return myJTravelLineMapper.updateOutDateLine();
+    }
+
     public JTravelLineMapper getMyJTravelLineMapper() {
         return myJTravelLineMapper;
     }

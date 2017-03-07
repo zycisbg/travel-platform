@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="myTravelLineOutDateTask" class="com.zyc.travel.service.task.TravelLineOutDateTask">
+        <property name="myTravelLineWriteBPO" ref="myTravelLineWriteBPO" />
+    </bean>
+
+    <!--&lt;!&ndash; 定时任务类 &ndash;&gt;
+    <bean id="myTravelLineOutDateTask" class="com.zyc.travel.service.task.TravelLineOutDateTask">
+
+    </bean>
+
+    <bean name="reportTask"
+          class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.zyc.travel.service.task.TravelLineOutDateTask"/>
+    </bean>
+
+    &lt;!&ndash; 触发器 &ndash;&gt;
+    <bean id="cronTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+
+        &lt;!&ndash; 指向我们的任务 &ndash;&gt;
+        <property name="jobDetail" ref="reportTask"/>
+
+        &lt;!&ndash;  每天下午16点50分到55分,每分钟运行一次 &ndash;&gt;
+        <property name="cronExpression" value="10 * * * * ?"/>
+    </bean>
+
+
+    &lt;!&ndash; 调度器  &ndash;&gt;
+    <bean
+            class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                &lt;!&ndash;  触发器列表 &ndash;&gt;
+                <ref bean="cronTrigger"/>
+            </list>
+        </property>
+        <property name="configLocation" value="classpath:quartz.properties"/>
+    </bean>-->
+
+
+    <bean name="startQuertz" lazy-init="false" autowire="no"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="autoStartup" value="true"/>
+        <property name="startupDelay" value="0"/>
+        <property name="triggers">
+            <list>
+                <ref bean="myTravelLineOutDateTaskFactory"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="myTravelLineOutDateTaskFactory"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="myTravelLineOutDateTaskDetail"/>
+        </property>
+        <property name="cronExpression">
+            <!--<value>0 0 6 * * ?</value>-->
+            <value>20 * * * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="myTravelLineOutDateTaskDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="concurrent" value="false"/>
+        <property name="targetObject">
+            <ref bean="myTravelLineOutDateTask"/>
+        </property>
+        <property name="targetMethod">
+            <value>doJob</value>
+        </property>
+    </bean>
+</beans>

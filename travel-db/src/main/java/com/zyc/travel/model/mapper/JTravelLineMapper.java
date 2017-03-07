@@ -30,4 +30,6 @@ public interface JTravelLineMapper {
     int updateByPrimaryKey(JTravelLine record);
 
     JTravelLine getById(Integer id);
+
+    Integer updateOutDateLine();
 }

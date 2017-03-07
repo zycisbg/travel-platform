@@ -35,4 +35,11 @@ public interface TravelLineWriteBPO {
      */
     Integer updateTravelLine(JTravelLine jTravelLine);
 
+
+    /**
+     * 定时任务让线路过期
+     * @return
+     */
+    Integer updateOutDateLine();
+
 }

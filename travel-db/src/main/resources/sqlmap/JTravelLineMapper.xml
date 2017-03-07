@@ -465,4 +465,10 @@
     on jtl.id = jtle.id
     where jtl.id = #{id,jdbcType=INTEGER}
   </select>
+  <update id="updateOutDateLine" >
+    update j_travel_line t
+    set
+      t.status = 2
+    where now() > t.go_date and t.status = 1
+  </update>
 </mapper>

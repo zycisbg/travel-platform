@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public enum Log {
 
-    APP("APP"), HB("APP");
+    APP("APP"), HB("APP"),TASK("task");
 
     org.apache.commons.logging.Log sLog;
 

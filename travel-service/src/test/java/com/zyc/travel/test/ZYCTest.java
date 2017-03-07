@@ -20,7 +20,7 @@ import java.util.concurrent.*;
  * Created by zyc on 16/9/7.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml", "classpath:applicationContext-db.xml", "classpath:applicationContext-bpo.xml", "classpath:applicationContext-service.xml","classpath:applicationContext-redis.xml","classpath:applicationContext-threadpool.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext.xml", "classpath:applicationContext-db.xml", "classpath:applicationContext-bpo.xml", "classpath:applicationContext-service.xml","classpath:applicationContext-redis.xml","classpath:applicationContext-threadpool.xml","classpath:applicationContext-quartz.xml"})
 public class ZYCTest {
 
     @Resource
@@ -53,14 +53,30 @@ public class ZYCTest {
             public Integer call() throws Exception {
                 System.out.println("son:-->"+Thread.currentThread().getName());
                 int total = 0;
-                for(int i = 0;i<1000;i++){
+                for(int i = 0;i<10000;i++){
+                    System.out.println(Thread.currentThread().getName()+":"+i);
                     total +=i;
                 }
                 return total;
             }
         });
+
+        int total = 0;
+        for(int i = 0;i<10000;i++){
+            System.out.println(Thread.currentThread().getName()+":"+i);
+            total +=i;
+        }
+        System.out.println(total);
         Integer integer = num.get(3, TimeUnit.SECONDS);
-        System.out.println(integer);
+        System.out.println("son:"+integer);
+    }
+
+    @Test
+    public void test() throws InterruptedException {
+        for (int i =0 ;i<1000;i++){
+            Thread.sleep(10000L);
+            System.out.println(i);
+        }
     }
 
 }
